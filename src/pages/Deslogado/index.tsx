@@ -1,14 +1,14 @@
-import { FormEvent, useState } from 'react'
+// import { FormEvent, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useParams } from 'react-router'
+// import { useParams } from 'react-router'
 
 import './styles.scss'
 import { useAuth } from '../../hooks/useAuth'
-import { database } from '../../services/firebase'
+// import { database } from '../../services/firebase'
 
 import googleLogoImg from '../../assets/images/google-logo.svg'
 
-import { Button } from '../../components/Button'
+// import { Button } from '../../components/Button'
 
 export function Deslogado() {
   const history = useHistory();
@@ -19,7 +19,7 @@ export function Deslogado() {
       await signInWithGoogle()
     }
 
-    //history.push('/sala/nova');
+    history.push('/principal');
   }
 
   return (

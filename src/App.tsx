@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';//BroserRouter,
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { AuthContextProvider } from './contexts/AuthContext';
 import { Deslogado } from './pages/Deslogado';

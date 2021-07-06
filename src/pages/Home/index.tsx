@@ -1,14 +1,14 @@
-import { FormEvent, useState } from 'react'
+// import { FormEvent, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useParams } from 'react-router'
+// import { useParams } from 'react-router'
 
 import './styles.scss'
 import { useAuth } from '../../hooks/useAuth'
-import { database } from '../../services/firebase'
+// import { database } from '../../services/firebase'
 
 import googleLogoImg from '../../assets/images/google-logo.svg'
 
-import { Button } from '../../components/Button'
+// import { Button } from '../../components/Button'
 
 export function Home() {
   const history = useHistory();
@@ -19,17 +19,19 @@ export function Home() {
       await signInWithGoogle()
     }
 
-    //history.push('/sala/nova');
+    history.push('/principal');
   }
 
   return (
-    <div className="container-google-btn">
-      <div className="google-btn" onClick={handleConnectGoogle}>
-        <div className="google-icon-wrapper">
-          <img className="google-icon" src={googleLogoImg} alt="Logo Google" />
+    <>
+      <div className="container-google-btn">
+        <div className="google-btn" onClick={handleConnectGoogle}>
+          <div className="google-icon-wrapper">
+            <img className="google-icon" src={googleLogoImg} alt="Logo Google" />
+          </div>
+          <p className="btn-text"><b>Entrar com Google</b></p>
         </div>
-        <p className="btn-text"><b>Entrar com Google</b></p>
       </div>
-    </div>
+    </>
   )
 }
