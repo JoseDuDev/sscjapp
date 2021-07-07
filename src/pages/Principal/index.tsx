@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import './styles.scss'
 import { useAuth } from '../../hooks/useAuth'
 import { useEffect, useState } from 'react';
-//import { database } from '../../services/firebase';
+import { database } from '../../services/firebase';
 import api from '../../api';
 
 type Usuario = {
@@ -32,17 +32,7 @@ export function Principal() {
   if (!user) {
     history.push('/logar');
   }
-  //database.ref(`users`).orderByChild('id').equalTo(user?.id || '').on('value', (userLido) => {
-  //if (!userLido.val()) {
-  //console.log(userLido.val())
 
-  console.log(user);
-
-  //database.ref(`users/`).push(user)
-  //}
-
-  //});
-  // com Async Await
   useEffect(() => {
     async function getItems() {
       try {
@@ -65,34 +55,23 @@ export function Principal() {
             perfilId: 6,
             ativo: true
           };
-          console.log(userPost);
           api.post(`usuario`, userPost)
-            .then(response => setUsuario(response.data));
+            .then(response => setUsuario(response.data))
+            .catch(error => {
+              console.error('There was an error!', error);
+            });
+          database.ref(`users/`).push(user)
         }
       } catch (error) {
         alert("Ocorreu um erro ao buscar o usuário");
       }
     }
     getItems();
-  }, []);
-
-
-
-  // useEffect(() => {
-  //   api.get(`usuario/uid/${user?.id}`).then((ret) => {
-  //     console.log('ret');
-  //     console.log(ret);
-  //     const data = ret.data.data;
-  //     console.log(data);
-  //     if (!data) {
-
-  //     }
-  //   });
-  // }, [])
+  }, [user]);
 
   return (
-    <div >
-      Conectado como {user?.name}
+    <div>
+      Conectado como {user?.name} <img className="avatar-img" src={user?.avatar} alt="Avatar" />
     </div>
   )
 }
