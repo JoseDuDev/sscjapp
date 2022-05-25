@@ -15,7 +15,6 @@ type Usuario = {
   telefone: string;
   celular: string;
   nascimento: Date;
-  provedor: string;
   uid: string;
   criado: Date;
   alterado: Date;
@@ -48,7 +47,6 @@ export function Principal() {
             telefone: "Sem telefone",
             celular: "Sem celular",
             nascimento: new Date(),
-            provedor: user?.provedor || "google",
             uid: user?.id || "1111111111",
             criado: new Date(),
             alterado: new Date(),
